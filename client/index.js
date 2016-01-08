@@ -2,6 +2,11 @@
  * Created by kriz on 08/01/16.
  */
 
+$.fn.extend({
+    htmltext() {
+        return $('<textarea />').html(this.html()).text();
+    }
+});
 /////////////////////////////////////
 /////////////////////////////////////
 
@@ -91,7 +96,7 @@ Template.Partition.events({
         $(evt.target).focus();
     },
     'blur #partition-title' (evt, ti) {
-        const title = ti.$(evt.target).html();
+        const title = ti.$(evt.target).htmltext();
         Partitions.update(this._id, { $set: { title: title } });
         ti.editTitle.set(false);
     },
@@ -101,7 +106,7 @@ Template.Partition.events({
         ti.$(evt.target).focus();
     },
     'blur #chapter-title' (evt, ti) {
-        const title = ti.$(evt.target).html();
+        const title = ti.$(evt.target).htmltext();
         const chapterId = Session.get('currentChapter');
         Chapters.update(chapterId, { $set: { title: title } });
         ti.editChapterTitle.set(false);
@@ -119,7 +124,15 @@ Template.Partition.events({
 /////////////////////////////////////
 /////////////////////////////////////
 
+Template.Section.onCreated(function () {
+    this.editTitle = new ReactiveVar(false);
+});
+
 Template.Section.helpers({
+    editTitle () {
+        return Template.instance().editTitle.get();
+    },
+
     chapters () {
         return Chapters.find({ section: this._id });
     }
@@ -140,15 +153,13 @@ Template.Section.events({
     },
 
     'click #section-title' (evt, ti) {
-        ti.$(evt.target).attr('contenteditable', true);
+        ti.editTitle.set(true);
     },
     'blur #section-title' (evt, ti) {
-        var $title = ti.$(evt.target);
-
-        const title = $title.html();
+        const title = ti.$(evt.target).htmltext();
         Sections.update(this._id, { $set: { title: title } });
 
-        $title.attr('contenteditable', false);
+        ti.editTitle.set(false);
     }
 
 });
@@ -167,7 +178,9 @@ Template.NavChapter.events({
 });
 
 Template.ChapterBlock.events({
-    '' () {
-
+    'click #remove-block' () {
+        var chapterId = Session.get('currentChapter');
+//        Meteor.call('removeChapterBlock', chapterId, this._id);
+        Chapters.update({ _id: chapterId }, { $pull: { blocks: { _id: this._id } } });
     }
 });
