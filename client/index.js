@@ -26,6 +26,9 @@ Template.NavBar.events({
             title: 'Раздел'
         });
         Session.set('currentPartition', partId);
+    },
+    'click #remove-partition' () {
+        Partitions.remove(this._id);
     }
 });
 
@@ -96,9 +99,12 @@ Template.Partition.events({
         $(evt.target).focus();
     },
     'blur #partition-title' (evt, ti) {
-        const title = ti.$(evt.target).htmltext();
+        const title = ti.$(evt.target).text();
+        console.log(title);
         Partitions.update(this._id, { $set: { title: title } });
+        console.log(title);
         ti.editTitle.set(false);
+        console.log(title);
     },
 
     'click #chapter-title' (evt, ti) {

@@ -198,47 +198,6 @@ body {
     }
 }
 
-a {
-    -webkit-transition: color .1s, background-color .1s;
-    -moz-transition: color .1s, background-color .1s;
-    -ms-transition: color .1s, background-color .1s;
-    -o-transition: color .1s, background-color .1s;
-    transition: color .1s, background-color .1s;
-    color: #0E58F5;
-    text-decoLaton: none
-}
-
-a:active,
-a:focus,
-a:hover {
-    color: #0B348B;
-    text-decoLaton: none;
-    cursor: pointer;
-}
-
-li a,
-p a {
-    background-image: -webkit-linear-gradient(top, transparent 50%, #709cf9 50%);
-    background-image: -moz-linear-gradient(top, transparent 50%, #709cf9 50%);
-    background-image: -o-linear-gradient(top, transparent 50%, #709cf9 50%);
-    background-image: linear-gradient(to bottom, transparent 50%, #709cf9 50%);
-    background-position: 0 93%;
-    background-repeat: repeat-x;
-    background-size: 100% .15rem;
-    text-shadow: .1rem 0 #FCFCFC, .15rem 0 #FCFCFC, -.1rem 0 #FCFCFC, -.15rem 0 #FCFCFC
-}
-
-li a:active,
-li a:focus,
-li a:hover,
-p a:active,
-p a:focus,
-p a:hover {
-    background-image: -webkit-linear-gradient(top, transparent 50%, #1257ea 50%);
-    background-image: -moz-linear-gradient(top, transparent 50%, #1257ea 50%);
-    background-image: -o-linear-gradient(top, transparent 50%, #1257ea 50%);
-    background-image: linear-gradient(to bottom, transparent 50%, #1257ea 50%)
-}
 
 p {
     -webkit-font-feature-settings: 'kern' 1, 'onum' 1, 'liga' 1;
