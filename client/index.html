@@ -10,13 +10,19 @@
 </head>
 
 <body>
-    {{>Layout}}
+    <div id="react-root"></div>
 </body>
+
+<template name="Markdown">
+    {{#markdown}}{{content}}{{/markdown}}
+</template>
+
 <template name="NavPartition">
     <li>
         <a id="set-partition">{{title}}</a><sup class="fa fa-times" title="Удалить раздел" id="remove-partition"></sup>
     </li>
 </template>
+
 <template name="NavBar">
     <nav class="navbar">
         <ul class="main-nav">
@@ -54,6 +60,7 @@
         <a href="#" id="add-chapter" class="button button-action button-tiny">добавить главку</a>
     </section>
 </template>
+
 <template name="ChapterBlock">
     <div class="item">
         <p>{{title}}</p>
@@ -101,6 +108,7 @@
         </div>
     </div>
 </template>
+
 <template name="Layout">
     <div class="layout">
         <div class="body">

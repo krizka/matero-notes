@@ -2,13 +2,17 @@
  * Created by kriz on 08/01/16.
  */
 
+Meteor.startup(function () {
+    ReactDOM.render(<Layout />, document.getElementById('react-root'));
+});
+/////////////////////////////////////
+/////////////////////////////////////
+
 $.fn.extend({
     htmltext() {
         return $('<textarea />').html(this.html()).text();
     }
 });
-/////////////////////////////////////
-/////////////////////////////////////
 
 Template.NavBar.onCreated(function () {
     this.subscribe('partitions');
